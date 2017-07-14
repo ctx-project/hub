@@ -36,6 +36,10 @@ io.on('connection', function(socket){
 		console.log('user disconnected');
 	});
 });
+
+cores.andrei.onPut = function(text) {
+	io.emit('put', text);	
+};		
 		
 app.listen(3201, () => {
 	console.log('%s listening at %s', app.name, app.url);
