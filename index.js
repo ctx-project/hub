@@ -20,6 +20,13 @@ app.get('/ctx/:user/get/:text', (req, res, next) => {
 	next();
 });
 
+app.get('/ctx/:user/hint/:text', (req, res, next) => {
+	var core = cores[req.params.user.toLowerCase()];
+	res.contentType = 'text';
+	res.send(core ? core.hint(req.params.text).join('\n') : 'no such user');
+	next();
+});
+
 app.get('/ctx/socket.io.js', restify.serveStatic({
 	directory: __dirname + '/node_modules/socket.io-client/dist',
 	file: 'socket.io.slim.js'
@@ -42,7 +49,5 @@ cores.andrei.onPut = function(text) {
 };		
 		
 app.listen(3201, () => {
-	console.log('%s listening at %s', app.name, app.url);
+	// console.log('%s listening at %s', app.name, app.url);
 });
-
- 
