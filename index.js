@@ -20,10 +20,10 @@ app.get('/ctx/:user/get/:text', (req, res, next) => {
 	next();
 });
 
-app.get('/ctx/:user/hint/:text', (req, res, next) => {
+app.get('/ctx/:user/hints/:text', (req, res, next) => {
 	var core = cores[req.params.user.toLowerCase()];
 	res.contentType = 'text';
-	res.send(core ? core.hint(req.params.text).join('\n') : 'no such user');
+	res.send(core ? core.hints(req.params.text).join('\n') : 'no such user');
 	next();
 });
 
